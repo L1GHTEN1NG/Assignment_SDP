@@ -1,15 +1,33 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
+// Main Application
+public class CinemaManagementApp {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        // Singleton usage
+        CinemaConfig config = CinemaConfig.getInstance();
+        config.setCinemaName("Starlight Cinemas");
+        System.out.println("Cinema Name: " + config.getCinemaName());
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        // Factory Method usage
+        MovieFactory regularFactory = new RegularMovieFactory();
+        Movie movie = regularFactory.createMovie("Inception");
+        System.out.println("Movie: " + movie.getTitle() + ", Type: " + movie.getType());
+
+        // Abstract Factory usage
+        UIFactory uiFactory = new DarkThemeFactory();
+        Button button = uiFactory.createButton();
+        button.render();
+
+        // Builder usage
+        TicketBooking booking = new TicketBookingBuilder()
+                .setMovieTitle("Inception")
+                .setSeatNumber("A1")
+                .setSnackCombo("Popcorn and Soda")
+                .build();
+
+        // Prototype usage
+        StandardSchedule template = new StandardSchedule();
+        template.setTime("18:00");
+        MovieSchedule eveningSchedule = template.clone();
+        eveningSchedule.setMovie(movie);
+        System.out.println("Cinema Management System initialized.");
     }
 }
