@@ -1,29 +1,29 @@
-// Main Application
+//Основа
 public class CinemaManagementApp {
     public static void main(String[] args) {
-        // Singleton usage
+        //Использования Синглтона
         CinemaConfig config = CinemaConfig.getInstance();
         config.setCinemaName("Starlight Cinemas");
         System.out.println("Cinema Name: " + config.getCinemaName());
 
-        // Factory Method usage
+        //Использование Метода Фабрики
         MovieFactory regularFactory = new RegularMovieFactory();
         Movie movie = regularFactory.createMovie("Inception");
         System.out.println("Movie: " + movie.getTitle() + ", Type: " + movie.getType());
 
-        // Abstract Factory usage
+        //использование Метода Абстрактной Фабрики
         UIFactory uiFactory = new DarkThemeFactory();
         Button button = uiFactory.createButton();
         button.render();
 
-        // Builder usage
+        //Использование билдера для создания бронирования билетов
         TicketBooking booking = new TicketBookingBuilder()
                 .setMovieTitle("Inception")
                 .setSeatNumber("A1")
                 .setSnackCombo("Popcorn and Soda")
                 .build();
 
-        // Prototype usage
+        //Использование прототипа
         StandardSchedule template = new StandardSchedule();
         template.setTime("18:00");
         MovieSchedule eveningSchedule = template.clone();
